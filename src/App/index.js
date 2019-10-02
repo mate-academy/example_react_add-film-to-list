@@ -1,15 +1,12 @@
 import { connect } from 'react-redux';
 import { App } from './App';
-import { addNewFilm } from '../store';
+import { addNewFilm, searchFilm } from '../store/index';
 
 const EnhancedApp = connect(
   null,
-  (dispatch) => {
-    const connectedAddNewFilm = newFilm => dispatch(addNewFilm(newFilm));
-
-    return {
-      addNewFilm: connectedAddNewFilm,
-    };
+  {
+    addNewFilm,
+    searchFilm,
   },
 )(App);
 

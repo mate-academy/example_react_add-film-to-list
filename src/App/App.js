@@ -5,57 +5,21 @@ import {
   Route,
 } from 'react-router-dom';
 import './App.scss';
-import { FilmsList } from '../components/FilmsList';
+import { FilmsList, FilmDetails } from '../components';
 import { NewFilm } from '../components/NewFilm';
 import { FormField } from '../components/FormField';
-import { FilmDetails } from '../components/FilmDetails';
-
-const API_URL = 'https://www.omdbapi.com/?apikey=2f4a38c9&t=';
 
 export class App extends Component {
   state = {
     searchWord: '',
   };
 
-  componentDidMount() {
-    this.searchFilm('spider');
-  }
-
-  handleAddFilm = (newFilm) => {
-    const { addNewFilm } = this.props;
-
-    addNewFilm(newFilm);
-  };
-
   handleSearchChange = ({ target }) => {
     this.setState({ searchWord: target.value });
   };
 
-  searchFilm = (searchWord) => {
-    fetch(`${API_URL}${searchWord}`)
-      .then(response => response.json())
-      .then((data) => {
-        const {
-          Title,
-          Plot,
-          Poster,
-          Website,
-          imdbID,
-        } = data;
-
-        const newFilm = {
-          id: imdbID,
-          title: Title,
-          description: Plot,
-          imgUrl: Poster,
-          imdbUrl: Website,
-        };
-
-        this.handleAddFilm(newFilm);
-      });
-  };
-
   render() {
+    const { searchFilm, addNewFilm } = this.props;
     const { searchWord } = this.state;
 
     return (
@@ -70,7 +34,7 @@ export class App extends Component {
               onChange={this.handleSearchChange}
             />
             <button
-              onClick={() => this.searchFilm(searchWord)}
+              onClick={() => searchFilm(searchWord)}
               type="button"
               className="button is-primary"
             >
@@ -92,7 +56,7 @@ export class App extends Component {
           </Switch>
         </div>
         <div className="sidebar">
-          <NewFilm onAdd={this.handleAddFilm} />
+          <NewFilm onAdd={addNewFilm} />
         </div>
       </div>
     );

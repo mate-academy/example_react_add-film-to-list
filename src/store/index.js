@@ -1,5 +1,8 @@
 import uuid4 from 'uuid4';
-import { createStore } from 'redux';
+import { applyMiddleware, createStore } from 'redux';
+import thunk from 'redux-thunk';
+
+const API_URL = 'https://www.omdbapi.com/?apikey=2f4a38c9&t=';
 
 const ACTION_TYPES = {
   ADD_NEW_FILM: 'FILM::ADD',
@@ -9,6 +12,30 @@ export const addNewFilm = film => ({
   type: ACTION_TYPES.ADD_NEW_FILM,
   payload: film,
 });
+
+export const searchFilm = searchWord => (dispatch) => {
+  fetch(`${API_URL}${searchWord}`)
+    .then(response => response.json())
+    .then((data) => {
+      const {
+        Title,
+        Plot,
+        Poster,
+        Website,
+        imdbID,
+      } = data;
+
+      const newFilm = {
+        id: imdbID,
+        title: Title,
+        description: Plot,
+        imgUrl: Poster,
+        imdbUrl: Website,
+      };
+
+      dispatch(addNewFilm(newFilm));
+    });
+};
 
 const initialState = {
   films: [],
@@ -34,7 +61,10 @@ function reducer(state = initialState, action = {}) {
   }
 }
 
-export const store = createStore(reducer);
+export const store = createStore(
+  reducer,
+  applyMiddleware(thunk),
+);
 
 // console.log('STATE', store.getState());
 //

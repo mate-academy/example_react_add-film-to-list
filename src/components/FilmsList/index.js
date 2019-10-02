@@ -1,4 +1,4 @@
-import { connect } from 'react-redux';
+import { connect } from '../../connect';
 import { FilmsList } from './FilmsList';
 
 // function mapState2Props(reduxState) {
