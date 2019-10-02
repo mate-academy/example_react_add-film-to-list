@@ -1,4 +1,5 @@
-import { createStore } from './redux';
+import uuid4 from 'uuid4';
+import { createStore } from 'redux';
 
 const ACTION_TYPES = {
   ADD_NEW_FILM: 'FILM::ADD',
@@ -18,7 +19,13 @@ function reducer(state = initialState, action = {}) {
     case ACTION_TYPES.ADD_NEW_FILM: {
       return {
         ...state,
-        films: [...state.films, action.payload],
+        films: [
+          ...state.films,
+          {
+            ...action.payload,
+            id: uuid4(),
+          },
+        ],
       };
     }
 

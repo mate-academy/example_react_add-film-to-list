@@ -15,35 +15,35 @@ export const FilmCard = (props) => {
 
   return (
     <Link to={`/film/${id}`} className="card">
-      <div className="card-image">
+      <span className="card-image">
         <figure className="image is-4by3">
           <img
             src={imgUrl}
             alt="Film logo"
           />
         </figure>
-      </div>
-      <div className="card-content">
-        <div className="media">
-          <div className="media-left">
+      </span>
+      <span className="card-content">
+        <span className="media">
+          <span className="media-left">
             <figure className="image is-48x48">
               <img
                 src="https://images-na.ssl-images-amazon.com/images/I/315W5zxAnTL._SY355_.png"
                 alt="imdb"
               />
             </figure>
-          </div>
-          <div className="media-content">
+          </span>
+          <span className="media-content">
             <p className="title is-4">{title}</p>
-          </div>
-        </div>
+          </span>
+        </span>
 
-        <div className="content">
+        <span className="content">
           {description}
           <br />
           <a href={imdbUrl}>IMDB</a>
-        </div>
-      </div>
+        </span>
+      </span>
     </Link>
   );
 };
