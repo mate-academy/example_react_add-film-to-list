@@ -1,16 +1,26 @@
 /* eslint-disable max-len */
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 export const FilmDetails = (props) => {
+  const { film, getFilm, match } = props;
+
+  useEffect(() => {
+    if (!film) {
+      getFilm(match.params.id);
+    }
+  }, [film, match.params.id]);
+
+  if (!film) {
+    return null;
+  }
+
   const {
-    film: {
-      title,
-      description,
-      imgUrl,
-      imdbUrl,
-    },
-  } = props;
+    title,
+    description,
+    imgUrl,
+    imdbUrl,
+  } = film;
 
   return (
     <div className="card">

@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import { FilmDetails } from './FilmDetails';
+import { getFilm } from '../../store';
 
 const EnhancedFilmDetails = connect(
   (state, ownProps) => {
@@ -8,6 +9,7 @@ const EnhancedFilmDetails = connect(
 
     return { film };
   },
+  { getFilm }
 )(FilmDetails);
 
 export {
