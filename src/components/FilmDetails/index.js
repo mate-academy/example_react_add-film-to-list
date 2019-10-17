@@ -1,5 +1,5 @@
-import { connect } from 'react-redux';
 import { FilmDetails } from './FilmDetails';
+import { connect } from '../../redux';
 import { getFilm, selectFilmById } from '../../store';
 
 const EnhancedFilmDetails = connect(

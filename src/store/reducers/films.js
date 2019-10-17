@@ -1,6 +1,6 @@
 import { ACTION_TYPES } from '../actionTypes';
 
-const filmsInitialState = {
+export const filmsInitialState = {
   films: [],
 };
 

@@ -1,8 +1,3 @@
-import { store } from './store';
-
 export * from './actions';
 export * from './selectors';
-
-export {
-  store,
-};
+export * from './rootReducer';

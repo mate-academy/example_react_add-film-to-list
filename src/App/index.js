@@ -1,5 +1,5 @@
-import { connect } from 'react-redux';
 import { App } from './App';
+import { connect } from '../redux';
 import { addNewFilm, searchFilm } from '../store';
 
 const EnhancedApp = connect(
