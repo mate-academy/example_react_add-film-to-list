@@ -8,7 +8,6 @@ import './App.scss';
 import { FilmsList, FilmDetails } from '../components';
 import { NewFilm } from '../components/NewFilm';
 import { FormField } from '../components/FormField';
-import { ThemeContext } from '../ThemeContext';
 
 export function App(props) {
   const { searchFilm, addNewFilm } = props;
@@ -35,46 +34,44 @@ export function App(props) {
   ), [addNewFilm]);
 
   return (
-    <ThemeContext.Provider value={{ theme, changeTheme }}>
-      <div className="page">
-        <div className="content">
-          <form
-            onSubmit={handleSearchSubmit}
-            className="box"
+    <div className="page">
+      <div className="content">
+        <form
+          onSubmit={handleSearchSubmit}
+          className="box"
+        >
+          <FormField
+            value={searchWord}
+            name="searchWord"
+            placeholder="Type search word"
+            label="Search film"
+            onChange={handleSearchChange}
+          />
+          <button
+            type="submit"
+            className="button is-primary"
           >
-            <FormField
-              value={searchWord}
-              name="searchWord"
-              placeholder="Type search word"
-              label="Search film"
-              onChange={handleSearchChange}
-            />
-            <button
-              type="submit"
-              className="button is-primary"
-            >
-              Search film
-            </button>
-          </form>
+            Search film
+          </button>
+        </form>
 
-          <Switch>
-            <Route
-              exact
-              path="/"
-              component={FilmsList}
-            />
-            <Route
-              exact
-              path="/film/:id"
-              component={FilmDetails}
-            />
-          </Switch>
-        </div>
-        <div className="sidebar">
-          {newFilmEl}
-        </div>
+        <Switch>
+          <Route
+            exact
+            path="/"
+            component={FilmsList}
+          />
+          <Route
+            exact
+            path="/film/:id"
+            component={FilmDetails}
+          />
+        </Switch>
       </div>
-    </ThemeContext.Provider>
+      <div className="sidebar">
+        {newFilmEl}
+      </div>
+    </div>
   );
 }
 

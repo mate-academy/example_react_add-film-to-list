@@ -1,8 +1,9 @@
 import { connect } from 'react-redux';
 import { FilmsList } from './FilmsList';
+import { selectFilmsList } from '../../store';
 
 const EnhancedFilmsList = connect(
-  state => ({ films: state.films }),
+  state => ({ films: selectFilmsList(state) }),
 )(FilmsList);
 
 export {

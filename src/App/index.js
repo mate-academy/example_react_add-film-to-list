@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { App } from './App';
-import { addNewFilm, searchFilm } from '../store/index';
+import { addNewFilm, searchFilm } from '../store';
 
 const EnhancedApp = connect(
   null,

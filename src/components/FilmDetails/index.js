@@ -1,14 +1,11 @@
 import { connect } from 'react-redux';
 import { FilmDetails } from './FilmDetails';
-import { getFilm } from '../../store';
+import { getFilm, selectFilmById } from '../../store';
 
 const EnhancedFilmDetails = connect(
-  (state, ownProps) => {
-    const film = state.films
-      .find(({ id }) => id === ownProps.match.params.id);
-
-    return { film };
-  },
+  (state, ownProps) => ({
+    film: selectFilmById(state, ownProps.match.params.id),
+  }),
   { getFilm }
 )(FilmDetails);
 

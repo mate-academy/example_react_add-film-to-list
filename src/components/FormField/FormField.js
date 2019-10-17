@@ -1,8 +1,7 @@
-import React, { memo, useContext } from 'react';
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import './FormField.scss';
-import { ThemeContext } from '../../ThemeContext';
 
 export const FormField = memo((props) => {
   const {
