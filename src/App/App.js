@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useMemo } from 'react';
+import React, { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import {
   Switch,
@@ -6,11 +6,10 @@ import {
 } from 'react-router-dom';
 import './App.scss';
 import { FilmsList, FilmDetails } from '../components';
-import { NewFilm } from '../components/NewFilm';
 import { FormField } from '../components/FormField';
 
 export function App(props) {
-  const { searchFilm, addNewFilm } = props;
+  const { searchFilm } = props;
   const [searchWord, setSearchWord] = useState('');
 
   const handleSearchChange = useCallback(
@@ -19,6 +18,7 @@ export function App(props) {
     },
     [setSearchWord]
   );
+
   const handleSearchSubmit = useCallback(
     (event) => {
       event.preventDefault();
@@ -28,10 +28,6 @@ export function App(props) {
     },
     [setSearchWord, searchWord]
   );
-
-  const newFilmEl = useMemo(() => (
-    <NewFilm onAdd={addNewFilm} />
-  ), [addNewFilm]);
 
   return (
     <div className="page">
@@ -68,14 +64,10 @@ export function App(props) {
           />
         </Switch>
       </div>
-      <div className="sidebar">
-        {newFilmEl}
-      </div>
     </div>
   );
 }
 
 App.propTypes = {
-  addNewFilm: PropTypes.func.isRequired,
   searchFilm: PropTypes.func.isRequired,
 };
