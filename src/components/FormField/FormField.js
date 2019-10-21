@@ -36,7 +36,7 @@ export const FormField = memo((props) => {
         />
         {error && (
           <span className="icon is-small is-right">
-            <i className="fas fa-exclamation-triangle"/>
+            <i className="fas fa-exclamation-triangle" />
           </span>
         )}
       </div>

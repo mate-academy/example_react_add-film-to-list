@@ -12,12 +12,13 @@ module.exports = {
     ecmaVersion: 9,
   },
   "globals": {
-    it: false
+    it: false,
   },
   rules: {
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     'no-console': 'off',
     "no-param-reassign": 0,
+    "no-undef": 0,
     "import/prefer-default-export": 0,
     "jsx-a11y/label-has-for": [2, {
       "components": ["Label"],

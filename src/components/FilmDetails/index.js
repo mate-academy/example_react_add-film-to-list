@@ -1,13 +1,13 @@
-import { connect } from 'react-redux';
 import { FilmDetails } from './FilmDetails';
-import { getFilm, selectFilmById } from '../../store';
+import { withAPIData } from '../../HOCs';
+import { selectFilmById } from '../../store/selectors';
+import { getFilm } from '../../store/actions';
 
-const EnhancedFilmDetails = connect(
-  (state, ownProps) => ({
-    film: selectFilmById(state, ownProps.match.params.id),
-  }),
-  { getFilm }
-)(FilmDetails);
+const EnhancedFilmDetails = withAPIData({
+  makeSelector: props => state => selectFilmById(state, props.match.params.id),
+  loader: props => getFilm(props.match.params.id),
+  dataName: 'film',
+})(FilmDetails);
 
 export {
   EnhancedFilmDetails as FilmDetails,
